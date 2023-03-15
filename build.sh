@@ -16,8 +16,7 @@ if [[ $BROWSERSTACK_UPLOAD = true || $BUILD_PODS = true ]]; then
     bundle install
 fi
 
-echo ls
-echo pwd
+ls /Users/runner/work/trippy-cid-test/trippy-cid-test/
 
 
 # If the variable FASTLANE_ENV is set then run fastlane with the --env equal to the variable.
