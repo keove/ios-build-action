@@ -56,7 +56,7 @@ platform :ios do
       silent: true,
       export_options: ENV['IOS_APP_ID'] != nil ? {
         provisioningProfiles: {
-          "com.trippy.iosapp" => "match AppStore com.trippy.iosapp",
+          "#{ENV['IOS_APP_ID']}" => "match AppStore #{ENV['IOS_APP_ID']}",
         },
       } : nil
     )
