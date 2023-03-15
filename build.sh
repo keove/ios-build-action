@@ -24,6 +24,8 @@ echo "/Users/runner/work/"
 ls /Users/runner/work
 echo "/Users/runner/work/_actions"
 ls /Users/runner/work/_actions
+echo "/Users/runner/work/_actions/keove"
+ls /Users/runner/work/_actions/keove
 echo "/Users/runner/work/trippy-cid-test/"
 ls /Users/runner/work/trippy-cid-test/
 echo "/Users/runner/work/trippy-cid-test/trippy-cid-test/"
