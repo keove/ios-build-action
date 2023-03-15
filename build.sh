@@ -17,7 +17,11 @@ if [[ $BROWSERSTACK_UPLOAD = true || $BUILD_PODS = true ]]; then
 fi
 
 echo "Dir list"
+
+echo "/Users/runner/work/trippy-cid-test/trippy-cid-test/"
 ls /Users/runner/work/trippy-cid-test/trippy-cid-test/
+
+echo "/Users/runner/work/trippy-cid-test/"
 ls /Users/runner/work/trippy-cid-test/
 
 
