@@ -2,9 +2,9 @@
 
 if ! type fastlane > /dev/null 2>&1; then
   if type brew > /dev/null 2>&1; then
-    brew install fastlane
+    brew install fastlane@2.210.1
   else
-    sudo gem install fastlane -NV
+    sudo gem install fastlane -NV -v 2.210.1
   fi
 fi
 
