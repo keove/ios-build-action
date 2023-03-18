@@ -23,13 +23,6 @@ if [[ $BROWSERSTACK_UPLOAD = true || $BUILD_PODS = true ]]; then
 fi
 
 
-
-echo "Remove Keychain"
-rm /Users/runner/Library/Keychains/ios-build.keychain-db
-
-
-
-
 # If the variable FASTLANE_ENV is set then run fastlane with the --env equal to the variable.
 if [ -n "${FASTLANE_ENV}" ]; then
     echo "Running fastlane with environment: ${FASTLANE_ENV}"
