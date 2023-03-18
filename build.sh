@@ -11,6 +11,9 @@ fi
 #echo cocoapos version
 echo "Cocoapods version: $(pod --version)"
 
+#echo podfile.lock
+cat Podfile.lock
+
 script_path=$(cd $(dirname ${0}); pwd)
 cp -r ${script_path}/fastlane ./
 cp -r ${script_path}/Gemfile ./
