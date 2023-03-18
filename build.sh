@@ -8,6 +8,9 @@ if ! type fastlane > /dev/null 2>&1; then
   fi
 fi
 
+#echo cocoapos version
+echo "Cocoapods version: $(pod --version)"
+
 script_path=$(cd $(dirname ${0}); pwd)
 cp -r ${script_path}/fastlane ./
 cp -r ${script_path}/Gemfile ./
@@ -16,8 +19,7 @@ if [[ $BROWSERSTACK_UPLOAD = true || $BUILD_PODS = true ]]; then
     bundle install
 fi
 
-#echo cocoapos version
-echo "Cocoapods version: $(pod --version)"
+
 
 echo "Remove Keychain"
 rm /Users/runner/Library/Keychains/ios-build.keychain-db
