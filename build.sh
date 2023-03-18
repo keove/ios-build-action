@@ -16,6 +16,9 @@ if [[ $BROWSERSTACK_UPLOAD = true || $BUILD_PODS = true ]]; then
     bundle install
 fi
 
+#echo cocoapos version
+echo "Cocoapods version: $(pod --version)"
+
 echo "Remove Keychain"
 rm /Users/runner/Library/Keychains/ios-build.keychain-db
 
