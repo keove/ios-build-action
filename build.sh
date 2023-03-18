@@ -26,6 +26,13 @@ fi
 # If the variable FASTLANE_ENV is set then run fastlane with the --env equal to the variable.
 if [ -n "${FASTLANE_ENV}" ]; then
     echo "Running fastlane with environment: ${FASTLANE_ENV}"
+    if ! type bundle > /dev/null 2>&1; then
+        echo "Bundler is not installed. Please install bundler to use fastlane with environment variables."
+    fi
+    
+    if ! type fastlane > /dev/null 2>&1; then
+        echo "Fastlane is not installed. Please install fastlane to use fastlane with environment variables."
+    fi
     fastlane --env ${FASTLANE_ENV} build
 else
     echo "Running fastlane"
