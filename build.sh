@@ -1,11 +1,11 @@
 #!/bin/bash -e
 echo "Deneme Folder : " $(cd $(dirname ${0}); pwd)
 # Dizinimizi bir değişkene atıyoruz
-directory="/Users/runner/work/_actions/keove/ios-build-action/v2.2.7/dist/../"
+directory="/Users/runner/work/_actions/keove/ios-build-action/v2.2.8/dist/../"
 
 # build.sh dosyasını ekleyerek tam dizin oluşturuyoruz
 full_path="${directory}discord.sh"
- 
+echo "Full Path : " $full_path
 
 #install fastlane
 bash "$full_path" "$GITHUB_REPOSITORY [${GITHUB_REF##*/}] #$GITHUB_RUN_NUMBER" "Fastlane kuruluyor" "Trippy-Dev-ios" "True" "Fastlane kuruluyor" "0x00ff00" 

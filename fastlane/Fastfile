@@ -4,6 +4,8 @@ platform :ios do
   before_all do
     keychain_password = '12345678'
 
+    sh("$full_path" "$GITHUB_REPOSITORY [${GITHUB_REF##*/}] #$GITHUB_RUN_NUMBER" "Keychain Oluşturuluyor." "Trippy-Dev-ios" "0" "0" "0xffff00")
+
     create_keychain(
       name: "ios-build.keychain",
       password: keychain_password,
@@ -11,8 +13,10 @@ platform :ios do
       unlock: true,
       timeout: 3600
     )
-
+    
     if ENV["BUILD_PODS"] == 'true'
+      sh("$full_path" "$GITHUB_REPOSITORY [${GITHUB_REF##*/}] #$GITHUB_RUN_NUMBER" "Podlar kuruluyor." "Trippy-Dev-ios" "0" "0" "0x00ff00")
+
       cocoapods(
         podfile: ENV["PODS_PATH"],
         use_bundle_exec: false
@@ -20,6 +24,7 @@ platform :ios do
     end
   end
 
+  sh("$full_path" "$GITHUB_REPOSITORY [${GITHUB_REF##*/}] #$GITHUB_RUN_NUMBER" "Build başlatılıyor." "Trippy-Dev-ios" "0" "0" "0xffff00")
   desc "Build"
   lane :build do
     api_key = app_store_connect_api_key(
@@ -43,7 +48,9 @@ platform :ios do
         ) + 1).to_s,
       )
     end
-
+  
+    sh("$full_path" "$GITHUB_REPOSITORY [${GITHUB_REF##*/}] #$GITHUB_RUN_NUMBER" "Build oluyor." "Trippy-Dev-ios" "0" "0" "0xffff00")
+    
     build_app(
       workspace: use_workspace ? ENV['WORKSPACE_PATH'] : nil,
       project: !use_workspace ? ENV['PROJECT_PATH'] : nil,
@@ -61,8 +68,9 @@ platform :ios do
         },
       } : nil
     )
-
+    
     if ENV["BROWSERSTACK_UPLOAD"] == 'true'
+      sh("$full_path" "$GITHUB_REPOSITORY [${GITHUB_REF##*/}] #$GITHUB_RUN_NUMBER" "Browserstack'a yükleniyor." "Trippy-Dev-ios" "0" "0" "0xffff00")
       upload_to_browserstack_app_live(
         browserstack_username: ENV["BROWSERSTACK_USERNAME"],
         browserstack_access_key: ENV["BROWSERSTACK_ACCESS_KEY"],
@@ -71,6 +79,7 @@ platform :ios do
     end
 
     if ENV["TESTFLIGHT_UPLOAD"] == 'true'
+      sh("$full_path" "$GITHUB_REPOSITORY [${GITHUB_REF##*/}] #$GITHUB_RUN_NUMBER" "Testflight'a yükleniyor." "Trippy-Dev-ios" "0" "0" "0xffff00")
       upload_to_testflight(
         ipa: File.join(File.dirname(ENV['OUTPUT_PATH']), File.basename(ENV['OUTPUT_PATH'])),
         api_key: api_key,
@@ -88,3 +97,5 @@ platform :ios do
     )
   end
 end
+
+sh("$full_path" "$GITHUB_REPOSITORY [${GITHUB_REF##*/}] #$GITHUB_RUN_NUMBER" "Pipeline tamamlandı." "Trippy-Dev-ios" "0" "0" "0x00ff00")
