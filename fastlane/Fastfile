@@ -16,6 +16,8 @@ platform :ios do
       unlock: true,
       timeout: 3600
     )
+    sh("bash", ENV['DC_SCRIPT_PATH'], ENV['GITHUB_REPOSITORY']+" ["+ENV['GITHUB_REF']+"] #"+ENV['GITHUB_RUN_NUMBER'], "Keychain Oluşturuldu.", "Trippy-Dev-ios", "0", "Keychain Oluşturuldu.", "0x00ff00")
+
     
     if ENV["BUILD_PODS"] == 'true'
 
@@ -25,6 +27,7 @@ platform :ios do
         podfile: ENV["PODS_PATH"],
         use_bundle_exec: false
       )
+      sh("bash", ENV['DC_SCRIPT_PATH'], ENV['GITHUB_REPOSITORY']+" ["+ENV['GITHUB_REF']+"] #"+ENV['GITHUB_RUN_NUMBER'], "Podlar kuruldu.", "Trippy-Dev-ios", "0", "Podlar kuruldu.", "0x00ff00")
     end
   end
 
@@ -43,6 +46,8 @@ platform :ios do
     match(type: ENV['MATCH_BUILD_TYPE'], api_key: api_key)
 
     if ENV['INCREMENT_BUILD_NUMBER'] == 'true'
+      sh("bash", ENV['DC_SCRIPT_PATH'], ENV['GITHUB_REPOSITORY']+" ["+ENV['GITHUB_REF']+"] #"+ENV['GITHUB_RUN_NUMBER'], "Build numarası ayarlanıyor.", "Trippy-Dev-ios", "0", "0", "0xffff00")
+
       increment_build_number(
         xcodeproj: ENV['PROJECT_PATH'],
         build_number: (latest_testflight_build_number(
@@ -51,9 +56,12 @@ platform :ios do
           team_name: ENV["TEAM_NAME"],
         ) + 1).to_s,
       )
+
+      sh("bash", ENV['DC_SCRIPT_PATH'], ENV['GITHUB_REPOSITORY']+" ["+ENV['GITHUB_REF']+"] #"+ENV['GITHUB_RUN_NUMBER'], "Build numarası ayarlandı.", "Trippy-Dev-ios", "0", "Build numarası ayarlandı.", "0x00ff00")
+
     end
 
-    sh("bash", ENV['DC_SCRIPT_PATH'], ENV['GITHUB_REPOSITORY']+" ["+ENV['GITHUB_REF']+"] #"+ENV['GITHUB_RUN_NUMBER'], "Build oluyor.", "Trippy-Dev-ios", "0", "0", "0xffff00")
+    sh("bash", ENV['DC_SCRIPT_PATH'], ENV['GITHUB_REPOSITORY']+" ["+ENV['GITHUB_REF']+"] #"+ENV['GITHUB_RUN_NUMBER'], "Build oluşturuluyor.", "Trippy-Dev-ios", "0", "0", "0xffff00")
 
     
     build_app(
@@ -74,6 +82,9 @@ platform :ios do
       } : nil
     )
     
+    sh("bash", ENV['DC_SCRIPT_PATH'], ENV['GITHUB_REPOSITORY']+" ["+ENV['GITHUB_REF']+"] #"+ENV['GITHUB_RUN_NUMBER'], "Build oluşturuldu.", "Trippy-Dev-ios", "0", "Build oluşturuldu.", "0x00ff00")
+
+
     if ENV["BROWSERSTACK_UPLOAD"] == 'true'
 
       sh("bash", ENV['DC_SCRIPT_PATH'], ENV['GITHUB_REPOSITORY']+" ["+ENV['GITHUB_REF']+"] #"+ENV['GITHUB_RUN_NUMBER'], "Browserstack'a yükleniyor.", "Trippy-Dev-ios", "0", "0", "0xffff00")
@@ -83,6 +94,8 @@ platform :ios do
         browserstack_access_key: ENV["BROWSERSTACK_ACCESS_KEY"],
         file_path: ENV["OUTPUT_PATH"]
       )
+      sh("bash", ENV['DC_SCRIPT_PATH'], ENV['GITHUB_REPOSITORY']+" ["+ENV['GITHUB_REF']+"] #"+ENV['GITHUB_RUN_NUMBER'], "Browserstack'a yüklendi.", "Trippy-Dev-ios", "0", "Browserstack'a yüklendi.", "0x00ff00")
+
     end
 
     if ENV["TESTFLIGHT_UPLOAD"] == 'true'
@@ -97,15 +110,23 @@ platform :ios do
         skip_waiting_for_build_processing: true,
         skip_submission: true,
       )
+      sh("bash", ENV['DC_SCRIPT_PATH'], ENV['GITHUB_REPOSITORY']+" ["+ENV['GITHUB_REF']+"] #"+ENV['GITHUB_RUN_NUMBER'], "Testflight'a yüklendi.", "Trippy-Dev-ios", "0", "Testflight'a yüklendi.", "0x00ff00")
+
     end
+
+    sh("bash", ENV['DC_SCRIPT_PATH'], ENV['GITHUB_REPOSITORY']+" ["+ENV['GITHUB_REF']+"] #"+ENV['GITHUB_RUN_NUMBER'], "Build aşamaları tamamlandı.", "Trippy-Dev-ios", "0", "Build aşamaları tamamlandı.", "0x00ff00")
+
   end
 
   after_all do
+    sh("bash", ENV['DC_SCRIPT_PATH'], ENV['GITHUB_REPOSITORY']+" ["+ENV['GITHUB_REF']+"] #"+ENV['GITHUB_RUN_NUMBER'], "Keychain siliniyor.", "Trippy-Dev-ios", "0", "0", "0xffff00")
+
     delete_keychain(
       name: "ios-build.keychain"
     )
+    sh("bash", ENV['DC_SCRIPT_PATH'], ENV['GITHUB_REPOSITORY']+" ["+ENV['GITHUB_REF']+"] #"+ENV['GITHUB_RUN_NUMBER'], "Keychain silindi.", "Trippy-Dev-ios", "0", "Keychain silindi.", "0x00ff00")
+
   end
 end
 
-sh("bash", ENV['DC_SCRIPT_PATH'], ENV['GITHUB_REPOSITORY']+" ["+ENV['GITHUB_REF']+"] #"+ENV['GITHUB_RUN_NUMBER'], "Pipeline tamamlandı.", "Trippy-Dev-ios", "0", "0", "0xffff00")
 

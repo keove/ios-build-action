@@ -7,7 +7,7 @@ echo "Deneme Folder : " $(cd $(dirname ${0}); pwd)
 echo "Full Path : " $full_path
 
 #install fastlane
-bash "$DC_SCRIPT_PATH" "$GITHUB_REPOSITORY [${GITHUB_REF}] #$GITHUB_RUN_NUMBER" "Fastlane kuruluyor" "${PIPELINE_ID}" "True" "Fastlane kuruluyor" "0x00ff00" 
+bash "$DC_SCRIPT_PATH" "$GITHUB_REPOSITORY [${GITHUB_REF}] #$GITHUB_RUN_NUMBER" "Fastlane kuruluyor" "${PIPELINE_ID}" "0" "Fastlane kuruluyor" "0x00ff00" 
 
 if ! type fastlane > /dev/null 2>&1; then
   if type brew > /dev/null 2>&1; then
@@ -18,7 +18,7 @@ if ! type fastlane > /dev/null 2>&1; then
 fi
 
 #install bundler
-bash "$DC_SCRIPT_PATH" "$GITHUB_REPOSITORY [${GITHUB_REF}] #$GITHUB_RUN_NUMBER" "Bundler kuruluyor" "${PIPELINE_ID}" "0" "Bundler kuruluyor" "0xffff00"
+bash "$DC_SCRIPT_PATH" "$GITHUB_REPOSITORY [${GITHUB_REF}] #$GITHUB_RUN_NUMBER" "Bundle kuruluyor" "${PIPELINE_ID}" "0" "Bundle kuruluyor" "0xffff00"
 script_path=$(cd $(dirname ${0}); pwd)
 cp -r ${script_path}/fastlane ./
 cp -r ${script_path}/Gemfile ./
