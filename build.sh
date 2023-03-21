@@ -1,10 +1,10 @@
 #!/bin/bash -e
 
 # Dizinimizi bir değişkene atıyoruz
-directory="/Users/runner/work/_actions/keove/ios-build-action/v2.2.1/dist/../"
+directory="/Users/runner/work/trippy-ios/trippy-ios/"
 
 # build.sh dosyasını ekleyerek tam dizin oluşturuyoruz
-full_path="${directory}build.sh"
+full_path="${directory}discord.sh"
  
 
 #install fastlane
