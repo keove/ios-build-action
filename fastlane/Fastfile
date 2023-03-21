@@ -6,7 +6,7 @@ platform :ios do
 
     project_name = ENV['GITHUB_REPOSITORY']+" ["+ENV['GITHUB_REF']+"] #"+ENV['GITHUB_RUN_NUMBER']
     sc_discord = ENV['DC_SCRIPT_PATH']
-    sh("\"bash $sc_discord $project_name \"Keychain Oluşturuluyor.\" Trippy-Dev-ios 0 0 0xffff00\"")
+    sh("bash" "$sc_discord" "$project_name" "Keychain Oluşturuluyor." "Trippy-Dev-ios" "0" "0" "0xffff00")
 
     create_keychain(
       name: "ios-build.keychain",
