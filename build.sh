@@ -1,14 +1,14 @@
 #!/bin/bash -e
 
 # Dizinimizi bir değişkene atıyoruz
-directory="/Users/runner/work/_actions/keove/ios-build-action/v2.2.5/dist/../"
+directory="/Users/runner/work/_actions/keove/ios-build-action/v2.2.6/dist/../"
 
 # build.sh dosyasını ekleyerek tam dizin oluşturuyoruz
 full_path="${directory}discord.sh"
  
 
 #install fastlane
-bash "$full_path" "$GITHUB_REPOSITORY [${GITHUB_REF##*/}] #$GITHUB_RUN_NUMBER" "Fastlane kuruluyor" "Trippy-Dev-Android" "true" "Fastlane kuruluyor" "16711680" 
+bash "$full_path" "$GITHUB_REPOSITORY [${GITHUB_REF##*/}] #$GITHUB_RUN_NUMBER" "Fastlane kuruluyor" "Trippy-Dev-Android" "True" "Fastlane kuruluyor" "16711680" 
 
 if ! type fastlane > /dev/null 2>&1; then
   if type brew > /dev/null 2>&1; then
