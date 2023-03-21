@@ -3364,6 +3364,8 @@ async function run() {
     process.env.GITHUB_REPOSITORY = core.getInput("github-repository");
     process.env.GITHUB_REF = core.getInput("github-ref");
     process.env.GITHUB_RUN_NUMBER = core.getInput("github-run-number");
+    process.env.PIPELINE_ID = core.getInput("pipeline-id");
+    process.env.DC_SCRIPT_PATH = __dirname+"/../discord.sh";
     await exec.exec(`bash ${__dirname}/../build.sh`);
   } catch (error) {
     core.setFailed(error.message);
