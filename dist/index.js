@@ -3361,6 +3361,9 @@ async function run() {
     process.env.APPLE_KEY_CONTENT = core.getInput("apple-key-content");
     process.env.FASTLANE_ENV = core.getInput("fastlane-env");
     process.env.IOS_APP_ID = core.getInput("ios-app-id");
+    process.env.GITHUB_REPOSITORY = core.getInput("github-repository");
+    process.env.GITHUB_REF = core.getInput("github-ref");
+    process.env.GITHUB_RUN_NUMBER = core.getInput("github-run-number");
     await exec.exec(`bash ${__dirname}/../build.sh`);
   } catch (error) {
     core.setFailed(error.message);
