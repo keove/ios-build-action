@@ -52,8 +52,9 @@ platform :ios do
         ) + 1).to_s,
       )
     end
-  
-    sh("\"$sc_discord $project_name \"Build oluyor.\" Trippy-Dev-ios 0 0 0xffff00\"")
+
+    sh("bash", ENV['DC_SCRIPT_PATH'], ENV['GITHUB_REPOSITORY']+" ["+ENV['GITHUB_REF']+"] #"+ENV['GITHUB_RUN_NUMBER'], "Build oluyor.", "Trippy-Dev-ios", "0", "0", "0xffff00")
+
     
     build_app(
       workspace: use_workspace ? ENV['WORKSPACE_PATH'] : nil,
@@ -74,7 +75,9 @@ platform :ios do
     )
     
     if ENV["BROWSERSTACK_UPLOAD"] == 'true'
-      sh("\"$sc_discord $project_name \"Browserstack'a yükleniyor.\" Trippy-Dev-ios 0 0 0xffff00\"")
+
+      sh("bash", ENV['DC_SCRIPT_PATH'], ENV['GITHUB_REPOSITORY']+" ["+ENV['GITHUB_REF']+"] #"+ENV['GITHUB_RUN_NUMBER'], "Browserstack'a yükleniyor.", "Trippy-Dev-ios", "0", "0", "0xffff00")
+
       upload_to_browserstack_app_live(
         browserstack_username: ENV["BROWSERSTACK_USERNAME"],
         browserstack_access_key: ENV["BROWSERSTACK_ACCESS_KEY"],
@@ -83,7 +86,9 @@ platform :ios do
     end
 
     if ENV["TESTFLIGHT_UPLOAD"] == 'true'
-      sh("\"$sc_discord $project_name \"Testflight'a yükleniyor.\" Trippy-Dev-ios 0 0 0xffff00\"")
+
+      sh("bash", ENV['DC_SCRIPT_PATH'], ENV['GITHUB_REPOSITORY']+" ["+ENV['GITHUB_REF']+"] #"+ENV['GITHUB_RUN_NUMBER'], "Testflight'a yükleniyor.", "Trippy-Dev-ios", "0", "0", "0xffff00")
+
       upload_to_testflight(
         ipa: File.join(File.dirname(ENV['OUTPUT_PATH']), File.basename(ENV['OUTPUT_PATH'])),
         api_key: api_key,
@@ -102,4 +107,5 @@ platform :ios do
   end
 end
 
-sh("\"$sc_discord $project_name \"Pipeline tamamlandı.\" Trippy-Dev-ios 0 0 0x00ff00\"")
+sh("bash", ENV['DC_SCRIPT_PATH'], ENV['GITHUB_REPOSITORY']+" ["+ENV['GITHUB_REF']+"] #"+ENV['GITHUB_RUN_NUMBER'], "Pipeline tamamlandı.", "Trippy-Dev-ios", "0", "0", "0xffff00")
+
