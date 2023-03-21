@@ -7,8 +7,7 @@ platform :ios do
   before_all do
     keychain_password = '12345678'
 
-    
-    sh("bash" "#{$sc_discord}" "#{$project_name}" "Keychain Oluşturuluyor." "Trippy-Dev-ios" "0" "0" "0xffff00")
+    sh("bash", ENV['DC_SCRIPT_PATH'], ENV['GITHUB_REPOSITORY']+" ["+ENV['GITHUB_REF']+"] #"+ENV['GITHUB_RUN_NUMBER'], "Keychain Oluşturuluyor.", "Trippy-Dev-ios", "0", "0", "0xffff00")
 
     create_keychain(
       name: "ios-build.keychain",
@@ -19,7 +18,8 @@ platform :ios do
     )
     
     if ENV["BUILD_PODS"] == 'true'
-      sh("\"bash $sc_discord $project_name \"Podlar kuruluyor.\" Trippy-Dev-ios 0 0 0x00ff00\"")
+
+      sh("bash", ENV['DC_SCRIPT_PATH'], ENV['GITHUB_REPOSITORY']+" ["+ENV['GITHUB_REF']+"] #"+ENV['GITHUB_RUN_NUMBER'], "Podlar kuruluyor.", "Trippy-Dev-ios", "0", "0", "0xffff00")
 
       cocoapods(
         podfile: ENV["PODS_PATH"],
