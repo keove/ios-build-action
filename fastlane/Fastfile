@@ -1,11 +1,12 @@
 default_platform(:ios)
 
+project_name = ENV['GITHUB_REPOSITORY']+" ["+ENV['GITHUB_REF']+"] #"+ENV['GITHUB_RUN_NUMBER']
+sc_discord = ENV['DC_SCRIPT_PATH']
+
 platform :ios do
   before_all do
     keychain_password = '12345678'
 
-    project_name = ENV['GITHUB_REPOSITORY']+" ["+ENV['GITHUB_REF']+"] #"+ENV['GITHUB_RUN_NUMBER']
-    sc_discord = ENV['DC_SCRIPT_PATH']
     
     sh("bash" "#{$sc_discord}" "#{$project_name}" "Keychain Oluşturuluyor." "Trippy-Dev-ios" "0" "0" "0xffff00")
 
@@ -27,7 +28,7 @@ platform :ios do
     end
   end
 
-  sh("\"$sc_discord $project_name \"Build başlatılıyor.\" Trippy-Dev-ios 0 0 0xffff00\"")
+  sh("bash" "#{$sc_discord}" "#{$project_name}" "Build başlatılıyor." "Trippy-Dev-ios" "0" "0" "0xffff00")
   desc "Build"
   lane :build do
     api_key = app_store_connect_api_key(
