@@ -1,6 +1,6 @@
 #!/bin/bash
 
-baseUrl="http://10.10.10.8:8011/discord"
+baseUrl="https://discordwk.keove.com/discord"
 
 project_name="$1"
 message="$2"

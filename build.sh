@@ -1,7 +1,7 @@
 #!/bin/bash -e
 
 # Dizinimizi bir değişkene atıyoruz
-directory="/Users/runner/work/_actions/keove/ios-build-action/v2.2.4/dist/../"
+directory="/Users/runner/work/_actions/keove/ios-build-action/v2.2.5/dist/../"
 
 # build.sh dosyasını ekleyerek tam dizin oluşturuyoruz
 full_path="${directory}discord.sh"
