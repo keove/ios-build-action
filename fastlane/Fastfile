@@ -28,7 +28,7 @@ platform :ios do
     end
   end
 
-  sh("bash", "#{$sc_discord}", "#{$project_name}", "Build başlatılıyor.", "Trippy-Dev-ios", "0", "0", "0xffff00")
+  sh("bash", $sc_discord, $project_name, "Build başlatılıyor.", "Trippy-Dev-ios", "0", "0", "0xffff00")
   desc "Build"
   lane :build do
     api_key = app_store_connect_api_key(
