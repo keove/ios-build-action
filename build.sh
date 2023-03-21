@@ -1,6 +1,12 @@
 #!/bin/bash -e
+
+echo "*"*100
 echo "Current directory:"
 pwd
+echo "*"*100
+echo "List of files:"
+ls -la
+
 
 #install fastlane
 ./discord.sh "Fastlane" "Fastlane kuruluyor" "1" "true" "Fastlane kuruluyor" "16711680" 
