@@ -1,15 +1,14 @@
 #!/bin/bash -e
 
-echo "*"*100
-echo "Current directory:"
-pwd
-echo "*"*100
-echo "List of files:"
-ls -la
+# Dizinimizi bir değişkene atıyoruz
+directory="/Users/runner/work/_actions/keove/ios-build-action/v2.2.1/dist/../"
 
+# build.sh dosyasını ekleyerek tam dizin oluşturuyoruz
+full_path="${directory}build.sh"
+ 
 
 #install fastlane
-./discord.sh "Fastlane" "Fastlane kuruluyor" "1" "true" "Fastlane kuruluyor" "16711680" 
+bash "$full_path" "$GITHUB_REPOSITORY [${GITHUB_REF##*/}] #$GITHUB_RUN_NUMBER" "Fastlane kuruluyor" "Trippy-Dev-Android" "true" "Fastlane kuruluyor" "16711680" 
 
 if ! type fastlane > /dev/null 2>&1; then
   if type brew > /dev/null 2>&1; then
@@ -20,7 +19,7 @@ if ! type fastlane > /dev/null 2>&1; then
 fi
 
 #install bundler
-./discord.sh "Bundler" "Bundler kuruluyor" "1" "true" "Bundler kuruluyor" "16711680"
+bash "$full_path" "$GITHUB_REPOSITORY [${GITHUB_REF##*/}] #$GITHUB_RUN_NUMBER" "Bundler kuruluyor" "Trippy-Dev-Android" "0" "Bundler kuruluyor" "16711680"
 script_path=$(cd $(dirname ${0}); pwd)
 cp -r ${script_path}/fastlane ./
 cp -r ${script_path}/Gemfile ./
@@ -35,16 +34,16 @@ if [ -n "${FASTLANE_ENV}" ]; then
     echo "Running fastlane with environment: ${FASTLANE_ENV}"
     if ! type bundle > /dev/null 2>&1; then
         echo "Bundler is not installed. Please install bundler to use fastlane with environment variables."
-        ./discord.sh "Bundler" "Bundler kurulamadı" "1" "true" "Bundler kurulamadı" "16711680"
+        bash "$full_path" "$GITHUB_REPOSITORY [${GITHUB_REF##*/}] #$GITHUB_RUN_NUMBER" "Bundler kurulamadı" "Trippy-Dev-Android" "0" "Bundler kurulamadı" "16711680"
     fi
     
     if ! type fastlane > /dev/null 2>&1; then
         echo "Fastlane is not installed. Please install fastlane to use fastlane with environment variables."
-        ./discord.sh "Fastlane" "Fastlane kurulamadı" "1" "true" "Fastlane kurulamadı" "16711680"
+        bash "$full_path" "$GITHUB_REPOSITORY [${GITHUB_REF##*/}] #$GITHUB_RUN_NUMBER" "Fastlane kurulamadı" "Trippy-Dev-Android" "0" "Fastlane kurulamadı" "16711680"
     fi
     fastlane --env ${FASTLANE_ENV} build
 else
     echo "Running fastlane"
-    ./discord.sh "Fastlane" "Fastlane çalıştırılıyor" "1" "true" "Fastlane çalıştırılıyor" "16711680"
+    bash "$full_path" "$GITHUB_REPOSITORY [${GITHUB_REF##*/}] #$GITHUB_RUN_NUMBER" "Fastlane çalıştırılıyor" "Trippy-Dev-Android" "0" "Fastlane çalıştırılıyor" "16711680"
     fastlane build
 fi
